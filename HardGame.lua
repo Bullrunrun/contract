@@ -13,7 +13,7 @@ end
 -- 随机生成牛
 function Generate_random_numbers()
     local numbers = {}
-    for i = 1,5 do
+    for i = 1,10 do
         numbers[i] = math.random(1,5)
     end
     return numbers
