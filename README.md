@@ -1,21 +1,13 @@
 # contract
 bull的合约端
 
-## 1.Token.lua
-- Info(): 返回代币参数，如名称、代号、徽标和计量单位
-- Balance(Target?: string): 返回目标的代币余额。如果未提供目标，则默认发送者为目标
-- Balances(): 返回所有参与者的代币余额
-- Transfer(Target: string, Quantity: number): 如果发送者有足够的余额，则将指定数量的代币发送给目标。还会向目标发送信用通知，并向发送者发送借记通知
-- Mint(Quantity: number): 如果发送者匹配进程所有者，则铸造所需数量的代币，并将其添加到进程的余额中
-- Total-Supply(): 返回代币的总供应量
-- Burn(Quantity: number):  销毁指定数量的代币，从地址中扣除
 
-## 2.EazyGame.lua
-- get_random_numbers()  获得1-5的随机数字用于生成牛，返回的是长度为5的数组，数组里有五个元素，为避免时间问题
-- get_bull_1(recipient) 套中数字为1的牛后，判断是否获得代币，recipient是用户地址
-- get_bull_2(recipient)
-- .....同上
+合约其实主要就token，EazyGame，HardGame三个合约；我是这样想的，初始我们合约里有100000个代币，用户可以通过领取获得最初的10个代币(不知道前端能不能实现只准调用一次，合约不好写这个，他这个lua合约比较抽象)，当通过游戏获得20个时，跳转到困难模式，牛稍微跑快点，获得30个就算通关游戏；前面我的随机数生成牛时调用一次生成五个，困难模式是调用一次生成十个，防止时间问题导致来不及生成；
 
-## 3.HardGame.lua
-- get_random_numbers()  获得1-5的随机数字用于生成牛，返回的是长度为10的数组，数组里有10个元素，为避免时间问题
-其余同EazyGame.lua
+
+## 接口（或者说类似接口）
+
+两个游戏合约里get_random_numbers是获取牛的随机数的。剩下的Function1-5是套中牛后获得代币的概率，token里的那些就顾名思义了,balance是获得单个人的余额的，balances是获取所有人的余额
+
+
+我看那个宠物的合约数据库好像和合约写一起的？真是抽象
